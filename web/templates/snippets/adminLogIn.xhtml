@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <body>
+        <ui:composition>         
+                <h:form style="text-align: right">
+                 
+                    <c:if test="#{commonInfraMB.logInAdmin!=-1}">
+                        <a href="AdminViewProfile.xhtml" >#{accMngmtMB.outAdmin.firstName}'s Account</a>&nbsp;| 
+                        <p:commandLink actionListener="#{commonInfraMB.adminLogout(actionEvent)}" value="Log out"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </c:if>
+                </h:form>
+        </ui:composition>
+    </body>
+</html>
+

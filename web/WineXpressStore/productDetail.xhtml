@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <body>
+
+        <ui:composition template="./../templates/mainTemplate.xhtml">
+            <ui:param name="pageName" value="About Us" />
+            <ui:define name="content">
+                <h:form id="form1">
+                    <p:fieldset legend="Product Information" >
+                        <h4 value="#{viewProductManagementBean.selectedProduct.name}"/>
+                        <h:panelGrid columns="2" cellpadding="5" style="text-align: left">
+                            <img id="logo" src="#{viewProductManagementBean.selectedProduct.picture}"/>
+                            <h:outputText  value="#{viewProductManagementBean.selectedProduct.description}"/>
+                        </h:panelGrid>
+                        <h4 id="category1"> Categories &nbsp; #{viewProductManagementBean.allSub}</h4>
+                    </p:fieldset>
+                    <h4 id="aveRate"> Average Rate of This Product: &nbsp; #{viewProductManagementBean.selectedProduct.averageRate}</h4>
+                    <br></br>
+                    <c:if test="#{viewProductManagementBean.onCus!=null}">
+                        <h:panelGrid columns="2" cellpadding="5">
+                            <h:outputText value="Rate This Product:" />
+                            <p:rating value="#{viewProductManagementBean.rating}" />               
+                        </h:panelGrid>
+                        <p:commandButton value="Rate" update="form1" actionListener="#{viewProductManagementBean.makeRate()}" style="margin:5px" />
+                    </c:if>
+
+                    <br></br>
+                    <h3>Comment</h3>
+                    <br></br>
+                    <p:dataTable id="commentDT" var="comment" value="#{viewProductManagementBean.selectedProduct.commentCollection}" scrollable="true" scrollHeight="200">
+                        <p:column headerText="CUstomer" width="100">
+                            <h:outputText value="#{comment.id}" />
+                        </p:column>
+                        <p:column headerText="Comment" >
+                            <h:outputText value="#{comment.comment}" />
+                        </p:column>                   
+                    </p:dataTable>
+                    <br></br>
+                    <c:if test="#{viewProductManagementBean.onCus!=null}">
+                        <h3>Add Your Comment</h3>
+                        <p:inputTextarea id="display" rows="15" cols="100" value="#{viewProductManagementBean.myComment}" minQueryLength="4" />
+                        <br></br>
+                        <p:commandButton actionListener="#{viewProductManagementBean.makeComment}"  update="form1" value="Submit">
+                        </p:commandButton> 
+                    </c:if>
+                    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+                    <p:commandButton action="productView.xhtml?faces-redirct=true" value="Go Back" icon="ui-icon-circle-arrow-w">
+                    </p:commandButton>  
+                    <br></br>
+                    <br></br>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
+
+

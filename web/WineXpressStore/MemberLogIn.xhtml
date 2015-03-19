@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="./../templates/mainTemplate.xhtml">
+        <ui:param name="pageName" value="Member Login" />
+        <ui:define name="more-imports">
+            <ui:insert>
+            </ui:insert>
+        </ui:define>
+
+        <ui:define name="content">
+            <br></br>
+            <h:form id="formLogin" class="form-signin">
+                <p:growl id="growl" autoUpdate="true" life="3000" />
+                <p:panel id="pnl" header="Login" style="margin-bottom:10px; text-align:center;" >  
+                    <h:panelGrid columns="2" style="margin: auto">  
+                        <h:outputLabel for="username" value="Email Address : " />  
+                        <p:inputText id="username" value="#{commonInfraMB.emailAdd}" required="true" label="Username" />
+                        
+                        <h:outputLabel for="password" value="Password : " />  
+                        <p:password id="password" value="#{commonInfraMB.password}" required="true" label="Password" />    
+                    </h:panelGrid>
+                    <br></br>
+                    <h:commandButton id="loginBtn" value="Login" action="#{commonInfraMB.memberLogIn(actionEvent)}" style="" /> 
+                    <br></br>
+                    <h:link id="forgetPass" value="Forget Password? Click here" outcome="/WineXpressStore/MemberForgetPassword.xhtml"  style="font-size:12px" />  
+                </p:panel>
+                <br></br>
+                <br></br>
+                <p:link value="Not a member yet? Register Here." outcome="/WineXpressStore/VisitorRegister.xhtml" ></p:link>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <head>
+        <script
+            src="http://maps.googleapis.com/maps/api/js"
+            >
+        </script>
+
+        <script>
+
+            var directionsDisplay;
+            var directionsService = new google.maps.DirectionsService();
+
+            function initialize() {
+
+                var myCenter = new google.maps.LatLng(1.3039538, 103.8314425);
+                var store2 = new google.maps.LatLng(1.299369, 103.854921);
+
+                directionsDisplay = new google.maps.DirectionsRenderer();
+
+                var mapProp = {
+                    center: myCenter,
+                    zoom: 13,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                };
+                var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+
+                var marker = new google.maps.Marker({
+                    position: myCenter,
+                });
+
+                var marker2 = new google.maps.Marker({
+                    position: store2,
+                });
+
+                marker.setMap(map);
+
+                marker2.setMap(map);
+
+                directionsDisplay.setMap(map);
+
+            }
+
+            function calcRoute() {
+                var start = document.getElementById('start').value;
+                var end = document.getElementById('end').value;
+
+                var request = {
+                    origin: start,
+                    destination: end,
+                    travelMode: google.maps.TravelMode.DRIVING
+                };
+                directionsService.route(request, function(response, status) {
+                    if (status == google.maps.DirectionsStatus.OK) {
+                        directionsDisplay.setDirections(response);
+                    }
+                });
+            }
+
+            google.maps.event.addDomListener(window, 'load', initialize);
+
+        </script>
+    </head>
+    <ui:composition template="./../templates/StoreTemplate.xhtml">
+        <ui:param name="pageName" value="Admin Management" />
+
+        <ui:define name="more-imports">
+            <ui:insert>
+            </ui:insert>
+        </ui:define>
+
+        <ui:define name="left">
+            <h3 style="text-align: left">Contact Us :</h3>
+            <h4 style="text-align: left">2 Orchard Turn Singapore 238801</h4>
+            <h4 style="text-align: left"> 200 Victoria Street Singapore 188021</h4>
+            <h4 style="text-align: left"> Tel:98765432</h4>
+
+
+        </ui:define>
+        <ui:define name="right">
+
+            <div id="panel">
+                <b>Start: </b>
+                <select id="start" onchange="calcRoute();">
+                    <option value="3155 Commonwealth Avenue West Singapore 129588">Clementi</option>
+                    <option value="1 Vista Exchange Green Singapore 138617">Buona Vista</option>
+                    <option value=" 54 Lavender Street, 338712">Lavender</option>
+                    <option value="252 North Bridge Road Singapore 179103">Raffles Place</option>
+
+                </select>
+                <b>End: </b>
+                <select id="end" onchange="calcRoute();">
+                    <option value="2 Orchard Turn Singapore 238801">Store A</option>
+                    <option value="200 Victoria Street Singapore 188021">Store 2</option>
+
+                </select>
+            </div>
+            <div id="map-canvas"></div>
+            <div id="googleMap" style="width:700px;height:380px;"></div>
+        </ui:define>
+    </ui:composition>
+</html>

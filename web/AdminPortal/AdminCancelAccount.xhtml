@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./../templates/AdminTemplate.xhtml">
+
+            <ui:define name="content">
+                #{commonInfraMB.checkAdminLogin()}
+                <h:form>
+                    <p:growl id="growl1" autoUpdate="true" life="5000" />
+                    <table align="center" cellpadding="0" cellspacing="0" style="min-width: 600px;">
+                        <tr>
+                            <td>
+                                <p:panel header="Cancel Account">
+                                    <table width="100%" cellpadding="0" cellspacing="0">
+                                        <tr>
+                                            <td width="30%">
+                                                Reconfirm Your Email: 
+                                            </td>
+                                            <td width="65%">
+                                                <p:inputText id="recipientID" value="#{accMngmtMB.toCancel}" required="true" requiredMessage="Please input your email"/>
+                                            </td>
+                                            <td width="5%">
+                                                <p:spacer></p:spacer>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <p:commandButton id="cancelAccount" value="Cancel Account" actionListener="#{accMngmtMB.cancelAccount(actionEvent)}"  
+                                                     style="margin-top: 10px" />
+                                </p:panel>
+                            </td>
+                        </tr>
+                    </table>
+                </h:form>
+                 
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

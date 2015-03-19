@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+   >
+    <body>
+        <ui:composition>
+            <c:set var="root" value="${request.contextPath}" />
+            <nav>
+                <div class="navbar navbar-default navbar-static-top" role="navigation">
+                    <div class="container">
+                        <div class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav title-font" style="padding-left:25px;">
+                                <li><a href="${root}/faces/AdminPortal/AdminHomePage.xhtml">HOME</a></li>
+                                <li><a href="${root}/faces/AdminPortal/AdminManageMember.xhtml">Account Management</a></li>
+                                <li><a href="${root}/faces/AdminPortal/productMnagHome.xhtml">Product Management</a></li>
+                                <li><a href="${root}/faces/AdminPortal/CustEnquiryView.xhtml">Customer Support</a></li>
+                                <li><a href="${root}/faces/AdminPortal/AdminHomePage.xhtml">Report Management</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </ui:composition>
+    </body>
+</html>
+

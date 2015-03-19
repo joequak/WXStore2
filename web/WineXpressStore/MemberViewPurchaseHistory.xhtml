@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+
+        <ui:composition template="./../templates/StoreTemplate.xhtml">
+
+            <ui:define name="content">
+                <p:dataTable id="purchaseHistoryDT" 
+                             var="pHist" value="#{accMngmtMB.outCust.orderDetailCollection}"
+                            rows="20" paginator="true"
+                            paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                            rowsPerPageTemplate="10, 20, 50, 100"
+                            emptyMessage="No Purchase History found with given criteria" 
+                            sortBy="#{pHist.ordDate}" sortOrder="descending" 
+                            style="margin-bottom:20px" >
+                   <f:facet name="header">
+                       List of Purchases
+                   </f:facet>
+                   <p:column headerText="Id" 
+                             sortBy="#{pHist.id}"
+                             style="width: 10%">
+                       <h:outputText value="#{pHist.id}" />
+                   </p:column>
+                   <p:column headerText="Order Date" 
+                             sortBy="#{pHist.ordDate}"
+                             style="width: 10%">
+                       <h:outputText value="#{pHist.ordDate}" />
+                   </p:column>
+                   <p:column headerText="Status" 
+                             style="width: 10%">
+                       <h:outputText value="#{pHist.status}" />
+                   </p:column>
+                   <p:column headerText="Total Price" 
+                             style="width: 10%">
+                       <h:outputText value="#{pHist.totalPrice}" />
+                   </p:column>
+                   <p:column headerText="orderItemCollection" 
+                             style="width: 10%">
+                       <h:outputText value="#{pHist.orderItemCollection}" />
+                   </p:column>
+
+               </p:dataTable>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

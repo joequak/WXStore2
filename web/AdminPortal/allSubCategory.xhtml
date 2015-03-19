@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="./../templates/AdminTemplate.xhtml">
+        <ui:param name="pageName" value="Admin Management" />
+
+        <ui:define name="more-imports">
+            <ui:insert>
+            </ui:insert>
+        </ui:define>
+
+        <ui:define name="left">
+            #{commonInfraMB.checkAdminLogin()}
+            <h:form>  
+                <p:growl id="messages"/>
+                <p:menubar>
+                    <p:menuitem value="Manage Category" url="../AdminPortal/allCategory.xhtml" />
+                    <p:separator />
+                    <p:menuitem value="Products" url="../AdminPortal/viewAllProduct.xhtml" />
+                    <p:separator />
+                    <p:menuitem value="Create Product" url="../AdminPortal/addNewProduct.xhtml" />
+                </p:menubar>
+            </h:form>
+
+        </ui:define>
+        <ui:define name="right">
+            <h:form id="allCate">
+                <p:growl id="growl" autoUpdate="true" life="3000" />
+                <p:dataTable id="subCat" style="width:600px;" 
+                             var="subCate" value="#{subCategoryMB.listOfSub}" 
+                             selectionMode="single" selection="#{subCategoryMB.selectedSub}" rowKey="#{subCate.id}"
+                             emptyMessage="No Subcategories found with given categories" widgetVar="subCate" >
+                    <p:column headerText="Sub-Categories" width="240">
+                        <h:outputText value="#{subCate.name}"/>
+                    </p:column>
+                </p:dataTable>
+                <br></br>
+                <p:commandButton actionListener="#{subCategoryMB.deleteSub()}" update=":allCate" value="Delete"></p:commandButton>
+                <h4 style="text-align: left">Add New Sub-category </h4>
+                <h:panelGrid columns="5" cellpadding="5" style="text-align: left">
+                    <h:outputText value="New Sub-Category Name:"/>&nbsp;
+                    <h:inputText value="#{subCategoryMB.name}"/>&nbsp;
+                    <p:commandButton actionListener="#{subCategoryMB.addNewSub()}" update=":allCate" value="ADD"></p:commandButton>
+                </h:panelGrid>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

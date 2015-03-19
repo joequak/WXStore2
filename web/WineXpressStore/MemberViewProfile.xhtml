@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./../templates/StoreTemplate.xhtml">
+
+            <ui:define name="content">
+                #{commonInfraMB.checkCustLogin()}
+                <p:growl id="growl1" autoUpdate="true" life="5000" />
+                <table align="center" cellpadding="0" cellspacing="0" style="min-width: 600px;">
+                    <tr>
+                        <td>
+                            <p:panel header="#{accMngmtMB.outCust.fistName}'s Account Information">
+                                <table width="100%" cellpadding="5" cellspacing="0">
+                                    <tbody style="text-align: left">
+                                    <tr>
+                                        <td width="20%">
+                                            <p:spacer></p:spacer>
+                                        </td>
+                                        <td width="65%">
+                                            <p:spacer></p:spacer>
+                                        </td>
+                                        <td width="15%">
+                                            <p:button value="Edit" icon="ui-icon-gear" outcome="/WineXpressStore/MemberEditParticulars.xhtml" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="20%">
+                                            Email: 
+                                        </td>
+                                        <td width="65%">
+                                            #{accMngmtMB.outCust.email}
+                                        </td>
+                                        <td width="15%">
+                                            <p:spacer></p:spacer>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="20%">
+                                            First Name: 
+                                        </td>
+                                        <td width="65%">
+                                            #{accMngmtMB.outCust.fistName}
+                                        </td>
+                                        <td width="15%">
+                                            <p:spacer></p:spacer>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="20%">
+                                            Last Name: 
+                                        </td>
+                                        <td width="65%">
+                                            #{accMngmtMB.outCust.lastName}
+                                        </td>
+                                        <td width="15%">
+                                            <p:spacer></p:spacer>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="20%">
+                                            Password:
+                                        </td>
+                                        <td width="65%">
+                                            ********  [<p:link outcome="/WineXpressStore/MemberChangePassword.xhtml" value="Change Password"></p:link>]
+                                        </td>
+                                        <td width="15%">
+                                            <p:spacer></p:spacer>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </p:panel>
+                        </td>
+                    </tr>
+                </table>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

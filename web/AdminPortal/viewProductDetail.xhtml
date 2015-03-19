@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="./../templates/AdminTemplate.xhtml">
+        <ui:param name="pageName" value="Admin Management" />
+
+        <ui:define name="more-imports">
+            <ui:insert>
+            </ui:insert>
+        </ui:define>
+
+        <ui:define name="left">
+            #{commonInfraMB.checkAdminLogin()}
+            <h:form>  
+                <p:growl id="messages"/>
+                <p:menubar>
+                    <p:menuitem value="Manage Category" url="../AdminPortal/allCategory.xhtml" />
+                    <p:separator />
+                    <p:menuitem value="Products" url="../AdminPortal/viewAllProduct.xhtml" />
+                    <p:separator />
+                    <p:menuitem value="Create Product" url="../AdminPortal/addNewProduct.xhtml" />
+                </p:menubar>
+            </h:form>
+
+        </ui:define>
+        <ui:define name="right">
+            <h:form>
+                <p:fieldset legend="Product Information" >
+                    <h4 value="#{editProductMB.myProduct.name}"/>
+                    <h:panelGrid columns="2" cellpadding="5" style="text-align: left">
+                        <img id="logo" src="#{editProductMB.myProduct.picture}"/>
+                        <h:outputText  value="#{editProductMB.myProduct.description}"/>
+                    </h:panelGrid>
+
+                </p:fieldset>
+                <br></br>
+                <p:fieldset  style="margin-bottom:20px">
+                    <h:panelGrid columns="2" cellpadding="5">
+                        <h:outputText value="Sub categories of this Product:"/>
+                        <h:outputText
+                            value="#{editProductMB.allSub}"/>
+                    </h:panelGrid>
+                </p:fieldset>
+                <br></br>
+                <h4 id="aveRate"> Average Rate of This Product: &nbsp; #{editProductMB.myProduct.averageRate}</h4>
+                <br></br>
+                <h3>All Comments</h3>
+                <br></br>
+                <p:dataTable var="comment" value="#{editProductMB.allComments}" scrollable="true" scrollHeight="200">
+                    <p:column headerText="CUstomer" width="100">
+                        <h:outputText value="#{comment.id}" />
+                    </p:column>
+                    <p:column headerText="Comment" >
+                        <h:outputText value="#{comment.comment}" />
+                    </p:column>                   
+                </p:dataTable>
+                <br></br>
+
+                <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+                <p:button value="Edit" icon="ui-icon-gear" outcome="/AdminPortal/editProduct.xhtml" />
+                <p:commandButton action="#{editProductMB.deleteProduct()}" value="Delete Product" >
+                </p:commandButton> 
+                <p:commandButton action="viewAllProduct.xhtml?faces-redirct=true" value="Go Back" icon="ui-icon-circle-arrow-w">
+                </p:commandButton>  
+                <br></br>
+                <br></br>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

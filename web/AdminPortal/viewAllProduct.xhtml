@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:composition template="./../templates/AdminTemplate.xhtml">
+        <ui:param name="pageName" value="Admin Management" />
+
+        <ui:define name="more-imports">
+            <ui:insert>
+            </ui:insert>
+        </ui:define>
+
+        <ui:define name="left">
+            #{commonInfraMB.checkAdminLogin()}
+            <h:form>  
+                <p:growl id="messages"/>
+                <p:menubar>
+                    <p:menuitem value="Manage Category" url="../AdminPortal/allCategory.xhtml" />
+                    <p:separator />
+                    <p:menuitem value="Products" url="../AdminPortal/viewAllProduct.xhtml" />
+                    <p:separator />
+                    <p:menuitem value="Create Product" url="../AdminPortal/addNewProduct.xhtml" />
+                </p:menubar>
+            </h:form>
+
+        </ui:define>
+
+        <ui:define name="right">
+            <h:form id="tableForm">
+                <p:button outcome="/AdminPortal/addNewProduct.xhtml" value="Add New Product"/>
+                <br></br>
+                <br></br>
+
+                <p:dataTable id="productTable" style="width:700px;" 
+                             var="product" value="#{allProductsMB.allProducts}" 
+                             paginator="true"
+                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             rowsPerPageTemplate="5,10,15,20"
+                             selectionMode="single" selection="#{allProductsMB.selectedProduct}" rowKey="#{product.id}"
+                             emptyMessage="No products found with given categories" widgetVar="productsTable" >
+                    <p:ajax event="rowSelect" listener="#{allProductsMB.onRowSelect}" />
+                    
+                    <p:column headerText="" width="240" rendered="#{product.productStatus==1}">
+                            <img id="logo" src="#{product.picture}"/> 
+                        </p:column>
+                        <p:column headerText="Product Description" rendered="#{product.productStatus==1}">
+                            <h:outputText value="#{product.description}" />
+                        </p:column>
+                        <p:column headerText="Price" width="80" sortBy="#{product.description}" rendered="#{product.productStatus==1}">
+                            <h:outputText value="#{product.price}" />
+                        </p:column> 
+                   
+                </p:dataTable>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

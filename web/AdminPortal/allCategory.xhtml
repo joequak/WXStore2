@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="./../templates/AdminTemplate.xhtml">
+        <ui:param name="pageName" value="Admin Management" />
+
+        <ui:define name="more-imports">
+            <ui:insert>
+            </ui:insert>
+        </ui:define>
+
+        <ui:define name="left">
+            #{commonInfraMB.checkAdminLogin()}
+            <h:form>  
+                <p:growl id="messages"/>
+                <p:menubar>
+                    <p:menuitem value="Manage Category" url="../AdminPortal/allCategory.xhtml" />
+                    <p:separator />
+                    <p:menuitem value="Products" url="../AdminPortal/viewAllProduct.xhtml" />
+                    <p:separator />
+                    <p:menuitem value="Create Product" url="../AdminPortal/addNewProduct.xhtml" />
+                </p:menubar>
+            </h:form>
+        </ui:define>
+        <ui:define name="right">
+            <h:form id="allCate">
+                <p:growl id="growl" autoUpdate="true" life="3000" />
+                <p:dataTable id="categoryTable" style="width:600px;" 
+                             var="cate" value="#{CategoryManagedBean.categoryList}" 
+                             selectionMode="single" selection="#{CategoryManagedBean.selectedCate}" rowKey="#{cate.id}"
+                             emptyMessage="No Categories found with given categories" widgetVar="categoryTable" >
+                    <p:column headerText="" width="240">
+                        <h:outputText value="#{cate.name}"/>
+                    </p:column>
+                </p:dataTable>
+                <br></br>
+                <p:commandButton actionListener="#{CategoryManagedBean.deleteCategory()}" update="allCate" value="Delete"></p:commandButton>&nbsp;
+                <p:commandButton actionListener="#{CategoryManagedBean.viewSubCategory()}" value="View SubCategories" ></p:commandButton>
+                <br></br>
+                <br></br>
+                <h3 style="text-align: left">Add New Category </h3>
+                <h:panelGrid columns="5" cellpadding="5" style="text-align: left">
+                    <h:outputText value="New Category Name:"/>&nbsp;
+                    <h:inputText value="#{CategoryManagedBean.categoryName}"/>&nbsp;
+                    <p:commandButton actionListener="#{CategoryManagedBean.saveNewCategory(event)}" update="allCate growl" value="ADD"></p:commandButton>
+                    <p:commandButton actionListener="#{CategoryManagedBean.updateCategoryName()}" update="allCate growl" value="Update"></p:commandButton>
+                </h:panelGrid>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

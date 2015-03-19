@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <body>
+        <ui:composition>
+            <c:set var="root" value="${request.contextPath}" />
+            <nav>
+                <!--<div class="nav navbar-nav navbar-right">
+                    <li><a href="#" onclick="toggleLoginModal();" >Login</a></li>
+                </div>-->
+                <div class="navbar navbar-default navbar-static-top" role="navigation">
+                    <div class="container">
+                        <div class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav title-font" style="padding-left:25px;">
+                                <li><a href="${root}/faces/WineXpressStore/homePage.xhtml">HOME</a></li>
+                                <li><a href="${root}/faces/WineXpressStore/AboutUs.xhtml">ABOUT</a></li>
+                                <li><a href="${root}/faces/WineXpressStore/productView.xhtml">SHOP</a></li>
+                                <li><a href="${root}/faces/WineXpressStore/map.xhtml">CONTACT US</a></li>
+                                <li><a href="${root}/faces/WineXpressStore/CustEnquiryEnter.xhtml">FEEDBACK</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+        </ui:composition>
+    </body>
+</html>
+

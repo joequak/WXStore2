@@ -1,0 +1,159 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 6, 2015, 10:37:48 PM
+    Author     : mac
+*/
+
+@font-face{
+    font-family: 'Raleway';
+    color: #FFFFFF;
+    src: url("#{resource['fonts/Raleway-Regular.ttf']}") format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.content-font{
+    font-family: 'Raleway', Arial, sans-serif;
+}
+.title-font{
+    font-family: 'Berlin sans fb', sans-serif !important;
+    font-weight: 500;
+}
+
+body{
+    background-color: #fbf9f3;
+    height:100%;
+    text-align:center; 
+}
+
+.top-nav{
+    background-color: #1c1c1d;
+    height:25px;
+}
+.top-nav-content{
+    margin-right:60px;
+}
+.top-nav-content>span{
+    color:white;
+    margin-right:15px;
+    font-size:10px;
+}
+
+.navbar-default{
+    background-color: #A68D5D;
+    display: center;
+    border-color: transparent;
+    display: inline-block;
+    list-style-type: none;
+    width:800px;
+}
+.navbar-default .navbar-nav>li>a{
+    color: white;
+    font-size: 13px;
+}
+
+.navbar li{
+    margin-left: auto ;
+    margin-right: auto ;
+}
+.nav>li>a:hover, .nav>li>a:focus{
+    color: black !important;
+}
+.navbar-nav>li>a{
+    line-height: 5px;
+}
+
+
+
+.left-container > ui-menu{
+    width:100%;
+}
+
+.left-container > form > .ui-menu{
+    width:100%;
+}
+.left-container > .ui-menu{
+    width:100%;
+}
+
+
+
+.left-container{
+    width: 26%;
+    float:left;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.right-container{
+    width:74%;
+    float:right;
+    margin-top: 42px;
+    margin-bottom: 50px;
+    position:relative;
+}
+.content-area{
+    position:relative;
+}
+
+.menu-width{
+    width:100%;
+}
+//*************************************************//
+//footer
+* {
+    margin: 0;
+}
+html {
+    height: 100%;
+}
+body{
+    height: 100%;
+    font-family: 'Raleway', Arial, sans-serif;
+}
+.wrapper {
+    min-height: 100%;
+    /*    height: auto !important;  IE6 support 
+        height: 100%;*/
+    margin: 0 auto -80px; /* the bottom margin is the negative value of the footer's height */
+}
+.footer{
+    background-color:#A68D5D;
+    color:#fff;
+    padding:25px;
+    overflow: hidden;
+    width:100%;
+}
+.footer, .push {
+    height: 80px; /* .push must be the same height as .footer */
+}
+.footer>.container>ul>li>a:hover, .footer>.container>.nav>li>a:focus{
+    color:white !important;
+}
+.footer>.container>ul>li{
+    vertical-align: middle;
+    margin: 0px;
+}
+.footer>.container>ul>li>a{
+    padding-right:15px;
+    padding-top:0;
+    padding-bottom:0;
+}
+//*************************************************//
+
+//table panel
+.ui-panel-titlebar.loginPanel{
+    background-color:transparent;
+}
+.ui-helper-clearfix.loginPanel {
+    
+}
+.ui-widget-content.loginPanel {
+    background-color: transparent;
+}
+
+//************************************************//

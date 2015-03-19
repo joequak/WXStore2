@@ -1,0 +1,286 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.3.1-b419 (branches/2.3.1.x-7937; 2014-08-04T08:11:03+0000) JAXWS-RI/2.2.10-b140803.1500 JAXWS-API/2.2.11 JAXB-RI/2.2.10-b140802.1033 JAXB-API/2.2.12-b140109.1041 svn-revision#unknown. --><xs:schema xmlns:tns="http://product/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://product/">
+
+<xs:element name="deleteCategories" type="tns:deleteCategories"/>
+
+<xs:element name="deleteCategoriesResponse" type="tns:deleteCategoriesResponse"/>
+
+<xs:element name="editCategories" type="tns:editCategories"/>
+
+<xs:element name="editCategoryName" type="tns:editCategoryName"/>
+
+<xs:element name="editCategoryNameResponse" type="tns:editCategoryNameResponse"/>
+
+<xs:element name="getCategoriesName" type="tns:getCategoriesName"/>
+
+<xs:element name="getCategoriesNameResponse" type="tns:getCategoriesNameResponse"/>
+
+<xs:element name="getSubCategoryNameList" type="tns:getSubCategoryNameList"/>
+
+<xs:element name="getSubCategoryNameListResponse" type="tns:getSubCategoryNameListResponse"/>
+
+<xs:element name="saveNewCategories" type="tns:saveNewCategories"/>
+
+<xs:element name="saveNewCategoriesResponse" type="tns:saveNewCategoriesResponse"/>
+
+<xs:element name="searchCategories" type="tns:searchCategories"/>
+
+<xs:element name="searchCategoriesResponse" type="tns:searchCategoriesResponse"/>
+
+<xs:element name="viewAllCategories" type="tns:viewAllCategories"/>
+
+<xs:element name="viewAllCategoriesResponse" type="tns:viewAllCategoriesResponse"/>
+
+<xs:complexType name="searchCategories">
+<xs:sequence>
+<xs:element name="categoriesName" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="searchCategoriesResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:categories" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="categories">
+<xs:sequence>
+<xs:element name="id" type="xs:long" minOccurs="0"/>
+<xs:element name="name" type="xs:string" minOccurs="0"/>
+<xs:element name="subCategoriesCollection" type="tns:subCategories" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="subCategories">
+<xs:sequence>
+<xs:element name="id" type="xs:long" minOccurs="0"/>
+<xs:element name="name" type="xs:string" minOccurs="0"/>
+<xs:element name="productCollection" type="tns:product" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="product">
+<xs:sequence>
+<xs:element name="availableQuantity" type="xs:int"/>
+<xs:element name="averageRate" type="xs:double"/>
+<xs:element name="commentCollection" type="tns:comment" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="cost" type="xs:double"/>
+<xs:element name="description" type="xs:string" minOccurs="0"/>
+<xs:element name="discount" type="xs:int"/>
+<xs:element name="id" type="xs:long" minOccurs="0"/>
+<xs:element name="name" type="xs:string" minOccurs="0"/>
+<xs:element name="numberOfRate" type="xs:int"/>
+<xs:element name="orderItemCollection" type="tns:orderItem" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="picture" type="xs:string" minOccurs="0"/>
+<xs:element name="price" type="xs:double"/>
+<xs:element name="productStatus" type="xs:int"/>
+<xs:element name="rateCollection" type="tns:rate" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="soldQuantity" type="xs:int"/>
+<xs:element name="volumn" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="comment">
+<xs:sequence>
+<xs:element name="comment" type="xs:string" minOccurs="0"/>
+<xs:element name="id" type="xs:long" minOccurs="0"/>
+<xs:element name="cStatus" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="orderItem">
+<xs:sequence>
+<xs:element name="id" type="xs:long" minOccurs="0"/>
+<xs:element name="orderDetail" type="tns:orderDetail" minOccurs="0"/>
+<xs:element name="product" type="tns:product" minOccurs="0"/>
+<xs:element name="quantity" type="xs:int"/>
+<xs:element name="subtotal" type="xs:double"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="orderDetail">
+<xs:sequence>
+<xs:element name="contactName" type="xs:string" minOccurs="0"/>
+<xs:element name="contactNumber" type="xs:string" minOccurs="0"/>
+<xs:element name="currency" type="xs:string" minOccurs="0"/>
+<xs:element name="customer" type="tns:customer" minOccurs="0"/>
+<xs:element name="discountedPrice" type="xs:double"/>
+<xs:element name="id" type="xs:long" minOccurs="0"/>
+<xs:element name="ordDate" type="tns:timestamp" minOccurs="0"/>
+<xs:element name="orderItemCollection" type="tns:orderItem" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="payment" type="tns:payment" minOccurs="0"/>
+<xs:element name="priceBeforeDisc" type="xs:double"/>
+<xs:element name="shippingFee" type="xs:double"/>
+<xs:element name="status" type="xs:string" minOccurs="0"/>
+<xs:element name="totalPrice" type="xs:double"/>
+<xs:element name="dAddress1" type="xs:string" minOccurs="0"/>
+<xs:element name="dAddress2" type="xs:string" minOccurs="0"/>
+<xs:element name="dCity" type="xs:string" minOccurs="0"/>
+<xs:element name="dContact" type="xs:string" minOccurs="0"/>
+<xs:element name="dCountry" type="xs:string" minOccurs="0"/>
+<xs:element name="dPostalCode" type="xs:string" minOccurs="0"/>
+<xs:element name="dState" type="xs:string" minOccurs="0"/>
+<xs:element name="sAddress1" type="xs:string" minOccurs="0"/>
+<xs:element name="sAddress2" type="xs:string" minOccurs="0"/>
+<xs:element name="sCity" type="xs:string" minOccurs="0"/>
+<xs:element name="sContactNum" type="xs:string" minOccurs="0"/>
+<xs:element name="sCountry" type="xs:string" minOccurs="0"/>
+<xs:element name="sPostalCode" type="xs:string" minOccurs="0"/>
+<xs:element name="sState" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="customer">
+<xs:sequence>
+<xs:element name="billToAdressCollection" type="tns:billToAddress" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="commentCollection" type="tns:comment" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="creditCardCollection" type="tns:creditCard" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="email" type="xs:string" minOccurs="0"/>
+<xs:element name="fistName" type="xs:string" minOccurs="0"/>
+<xs:element name="id" type="xs:long" minOccurs="0"/>
+<xs:element name="lastName" type="xs:string" minOccurs="0"/>
+<xs:element name="orderDetailCollection" type="tns:orderDetail" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="password" type="xs:string" minOccurs="0"/>
+<xs:element name="rateCollection" type="tns:rate" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="shipToAddressCollection" type="tns:shipToAddress" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="status" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="billToAddress">
+<xs:sequence>
+<xs:element name="address1" type="xs:string" minOccurs="0"/>
+<xs:element name="address2" type="xs:string" minOccurs="0"/>
+<xs:element name="billState" type="xs:string" minOccurs="0"/>
+<xs:element name="city" type="xs:string" minOccurs="0"/>
+<xs:element name="contactNumber" type="xs:string" minOccurs="0"/>
+<xs:element name="country" type="xs:string" minOccurs="0"/>
+<xs:element name="customerCollection" type="tns:customer" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="id" type="xs:long" minOccurs="0"/>
+<xs:element name="postalcode" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="creditCard">
+<xs:sequence>
+<xs:element name="cardHolder" type="xs:string" minOccurs="0"/>
+<xs:element name="cardNumber" type="xs:string" minOccurs="0"/>
+<xs:element name="customerCollection" type="tns:customer" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="expDate" type="xs:string" minOccurs="0"/>
+<xs:element name="id" type="xs:long" minOccurs="0"/>
+<xs:element name="type" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="rate">
+<xs:sequence>
+<xs:element name="id" type="xs:long" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="shipToAddress">
+<xs:sequence>
+<xs:element name="address1" type="xs:string" minOccurs="0"/>
+<xs:element name="address2" type="xs:string" minOccurs="0"/>
+<xs:element name="city" type="xs:string" minOccurs="0"/>
+<xs:element name="contactNumber" type="xs:string" minOccurs="0"/>
+<xs:element name="country" type="xs:string" minOccurs="0"/>
+<xs:element name="customerCollection" type="tns:customer" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="id" type="xs:long" minOccurs="0"/>
+<xs:element name="postalcode" type="xs:string" minOccurs="0"/>
+<xs:element name="shipState" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="timestamp">
+<xs:sequence>
+<xs:element name="nanos" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="payment">
+<xs:sequence>
+<xs:element name="amount" type="xs:double"/>
+<xs:element name="cardHolder" type="xs:string" minOccurs="0"/>
+<xs:element name="cardNumber" type="xs:int"/>
+<xs:element name="id" type="xs:long" minOccurs="0"/>
+<xs:element name="method" type="xs:string" minOccurs="0"/>
+<xs:element name="orderDetail" type="tns:orderDetail" minOccurs="0"/>
+<xs:element name="payDay" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getSubCategoryNameList">
+<xs:sequence>
+<xs:element name="categoryName" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getSubCategoryNameListResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="editCategoryName">
+<xs:sequence>
+<xs:element name="newName" type="xs:string" minOccurs="0"/>
+<xs:element name="myCat" type="tns:categories" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="editCategoryNameResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="saveNewCategories">
+<xs:sequence>
+<xs:element name="categoriesName" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="saveNewCategoriesResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:long"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="viewAllCategories">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="viewAllCategoriesResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:categories" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="editCategories">
+<xs:sequence>
+<xs:element name="newCategories" type="tns:categories" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getCategoriesName">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getCategoriesNameResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="deleteCategories">
+<xs:sequence>
+<xs:element name="categoryId" type="xs:long"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="deleteCategoriesResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>

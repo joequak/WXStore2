@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="./../templates/AdminTemplate.xhtml">
+        <ui:param name="pageName" value="Admin Management" />
+
+        <ui:define name="more-imports">
+            <ui:insert>
+            </ui:insert>
+        </ui:define>
+
+        <ui:define name="left">
+            #{commonInfraMB.checkAdminLogin()}
+            #{commonInfraMB.checkAdminLogin()}
+            <h:form>  
+                <p:growl id="messages"/>
+                <p:menubar>
+                    <p:menuitem value="Manage Category" url="../AdminPortal/allCategory.xhtml" />
+                    <p:separator />
+                    <p:menuitem value="Products" url="../AdminPortal/viewAllProduct.xhtml" />
+                    <p:separator />
+                    <p:menuitem value="Create Product" url="../AdminPortal/addNewProduct.xhtml" />
+                </p:menubar>
+            </h:form>
+        </ui:define>
+        <ui:define name="right">
+            <h:form id="form2" enctype="multipart/form-data">
+                <h3>Upload Product Picture</h3>
+                <p:fileUpload  fileUploadListener="#{productMB.handleFileUpload}" mode="advanced" dragDropSupport="false"
+                               sizeLimit="100000" fileLimit="1" allowTypes="/(\.|\/)(gif|jpeg|png|jpg|PNG)$/" /> 
+                <br></br>
+            </h:form>
+            <h:form id="form1">
+                <p:growl id="messages" showDetail="true" />
+                <h:panelGrid columns="4" cellpadding="5" style="text-align: left">
+                    <h:outputText value="Please add Product description:"/>&nbsp;&nbsp;
+                    <p:inputTextarea id="display" rows="7" cols="70" value="#{productMB.productDesc}" minQueryLength="4" />
+                </h:panelGrid>
+                <br></br>
+                    <h:outputText value="Product Name:"/>
+                    <h:inputText value="#{productMB.productName}"/>&nbsp;
+                    <h:outputText value="Available Quantity:"/>
+                    <h:inputText value="#{productMB.availableQ}"/>
+                    <h:outputText value="Product Cost:"/>
+                    <h:inputText value="#{productMB.cost}"/>&nbsp;
+                    <h:outputText value="Product Price:"/>
+                    <h:inputText value="#{productMB.price}"/>
+                    <h:outputText value="Product discount:"/>
+                    <h:inputText value="#{productMB.discount}"/>&nbsp;
+                    <h:outputText value="Product Volume:"/>
+                    <h:inputText value="#{productMB.volume}"/>                
+                <br></br>
+                <h3>Set Product Categories</h3>
+                <h:panelGrid columns="5" cellpadding="5">
+                    <p:tree style="width:100px; text-align: left"
+                            value="#{productMB.root}" var="myNode" 
+                            selectionMode="single" selection="#{productMB.selectedNode}">
+                        <p:ajax event="select" update=":form1:categoryTable" listener="#{productMB.onNodeSelect}" />
+                        <p:treeNode>
+                            <h:outputText value="#{myNode}"/>
+                        </p:treeNode>                          
+                    </p:tree>
+                    &nbsp;
+                    <p:dataTable id="categoryTable" style="width:300px;" 
+                                 var="cate" value="#{productMB.listOfSub}" 
+                                 selectionMode="single" selection="#{productMB.selectedSub}" rowKey="#{cate.id}"
+                                 emptyMessage="No SubCategories found with given categories" widgetVar="cate" >
+                        <p:ajax event="rowSelect" listener="#{productMB.addSubCategorie()}" />
+                        <p:column headerText="SubCategories" width="240">
+                            <h:outputText value="#{cate.name}"/>
+                        </p:column>
+                    </p:dataTable>
+                    &nbsp;
+                </h:panelGrid>
+                <br></br>
+                <p:commandButton value="Add Product" update=":form1" actionListener="#{productMB.createNewProduct()}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

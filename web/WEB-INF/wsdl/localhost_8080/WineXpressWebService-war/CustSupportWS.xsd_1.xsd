@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.3.1-b419 (branches/2.3.1.x-7937; 2014-08-04T08:11:03+0000) JAXWS-RI/2.2.10-b140803.1500 JAXWS-API/2.2.11 JAXB-RI/2.2.10-b140802.1033 JAXB-API/2.2.12-b140109.1041 svn-revision#unknown. --><xs:schema xmlns:tns="http://WS/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://WS/">
+
+<xs:element name="creatEnquiry" type="tns:creatEnquiry"/>
+
+<xs:element name="creatEnquiryResponse" type="tns:creatEnquiryResponse"/>
+
+<xs:element name="generatePassword" type="tns:generatePassword"/>
+
+<xs:element name="generatePasswordResponse" type="tns:generatePasswordResponse"/>
+
+<xs:element name="getNewEnquiry" type="tns:getNewEnquiry"/>
+
+<xs:element name="getNewEnquiryResponse" type="tns:getNewEnquiryResponse"/>
+
+<xs:element name="getRepliedEnquiry" type="tns:getRepliedEnquiry"/>
+
+<xs:element name="getRepliedEnquiryResponse" type="tns:getRepliedEnquiryResponse"/>
+
+<xs:element name="sendEmail" type="tns:sendEmail"/>
+
+<xs:element name="sendEmailResponse" type="tns:sendEmailResponse"/>
+
+<xs:element name="sendResponse" type="tns:sendResponse"/>
+
+<xs:element name="sendResponseResponse" type="tns:sendResponseResponse"/>
+
+<xs:complexType name="getNewEnquiry">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getNewEnquiryResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:custEnquiry" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="custEnquiry">
+<xs:sequence>
+<xs:element name="content" type="xs:string" minOccurs="0"/>
+<xs:element name="emailAddress" type="xs:string" minOccurs="0"/>
+<xs:element name="id" type="xs:long" minOccurs="0"/>
+<xs:element name="inDate" type="tns:timestamp" minOccurs="0"/>
+<xs:element name="outDate" type="tns:timestamp" minOccurs="0"/>
+<xs:element name="reply" type="xs:string" minOccurs="0"/>
+<xs:element name="subject" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="timestamp">
+<xs:sequence>
+<xs:element name="nanos" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="creatEnquiry">
+<xs:sequence>
+<xs:element name="enquiry" type="tns:custEnquiry" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="creatEnquiryResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getRepliedEnquiry">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getRepliedEnquiryResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:custEnquiry" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="sendEmail">
+<xs:sequence>
+<xs:element name="toEmail" type="xs:string" minOccurs="0"/>
+<xs:element name="subject" type="xs:string" minOccurs="0"/>
+<xs:element name="content" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="sendEmailResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="generatePassword">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="generatePasswordResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="sendResponse">
+<xs:sequence>
+<xs:element name="id" type="xs:long" minOccurs="0"/>
+<xs:element name="response" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="sendResponseResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>

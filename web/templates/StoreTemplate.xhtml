@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <f:view contentType="text/html">
+
+        <h:head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
+            <ui:insert name="imports" >
+                <ui:include src="/templates/snippets/imports.xhtml" />
+            </ui:insert>
+            <!-- Specific Imports -->
+            <ui:insert name="more-imports" >
+            </ui:insert>
+            <!-- Additional Header Information -->
+            <ui:insert name="header" >
+                <ui:include src="/templates/snippets/header.xhtml" />
+            </ui:insert>
+        </h:head>
+        <h:body>
+            <ui:insert name="body">
+                <div class="wrapper">
+                    <ui:insert name="login">
+                        <ui:include src="/templates/snippets/login.xhtml" />
+                    </ui:insert>
+                    <ui:insert name="logo">
+                        <ui:include src="/templates/snippets/logo.xhtml" />
+                    </ui:insert>
+                    <!-- Navigation Bar -->
+                    <ui:insert name="nav" >
+                        <ui:include src="/templates/snippets/navigation.xhtml" />
+                    </ui:insert>
+                    <!-- Content -->
+                    <div class="container content-area">
+                        <ui:insert name="content" >
+                            <div class="container right-container">
+                                <ui:insert name="right"></ui:insert>
+                            </div>
+                            <div class="container left-container">
+                                <ui:insert name="left"></ui:insert>
+                            </div>            
+                        </ui:insert>
+
+                    </div>
+                </div>
+                <div class="push"></div>
+                <div class="footer">
+                    <ui:include src="/templates/snippets/footer.xhtml" />
+                </div>
+
+            </ui:insert>
+        </h:body>
+    </f:view>
+</html>
