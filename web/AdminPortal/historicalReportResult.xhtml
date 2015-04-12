@@ -31,14 +31,14 @@
                 <p:chart type="line" model="#{resultMB.lineModel2}" style="height:400px;"/>
                 <br></br>
                 <p:dataTable var="order" value="#{resultMB.dataList}" scrollable="true" scrollHeight="250">
-                    <p:column headerText="Order Number">
-                        <h:outputText value="#{order.id}" />
-                    </p:column>
                     <p:column headerText="Date">
-                        <h:outputText value="#{order.ordDate}" />
+                        <h:outputText value="#{order.month}" />
                     </p:column>
-                    <p:column headerText="Total Value">
-                        <h:outputText value="#{order.totalPrice}" />
+                    <p:column headerText="Profit">
+                        <h:outputText value="#{order.profit}" />
+                    </p:column>
+                    <p:column headerText="Revenue">
+                        <h:outputText value="#{order.revenue}" />
                     </p:column>
                 </p:dataTable>
                 <br></br>
