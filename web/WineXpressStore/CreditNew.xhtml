@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>CreditNew</title>
+    </h:head>
+    <h:body>
+
+
+        <h:form id="formCreateEnquiry">
+
+            <p:panel  id="panelCreateAccount">
+                <p:growl id="msgs" showDetail="true" />
+                
+                
+                <p:commandButton  value="Clear" type="reset" actionListener="#{addressMB.clear()}" ajax="true"/>
+
+                <p:panelGrid>
+                    
+                    <p:row>
+                        <p:column>
+                            <p:outputLabel for="name" style="font-weight: bold" value="Card Holder Name:" />
+                        </p:column>
+                        <p:column>
+                            <p:inputText required="true" requiredMessage=" Please enter card holder name" id="name" value="#{addressMB.holderName}">
+                            </p:inputText>
+                        </p:column>               
+                    </p:row>
+                    
+                     <p:row>
+                        <p:column>
+                            <p:outputLabel for="num" style="font-weight: bold" value="Credit Card Number:" />
+                        </p:column>
+                        <p:column>
+                            <p:inputText required="true" requiredMessage=" Please enter your credit card number" id="num" value="#{addressMB.creditNum}">
+                            </p:inputText>
+                        </p:column>               
+                    </p:row>
+                    
+                    
+                     <p:row>
+                        <p:column>
+                            <p:outputLabel for="exp" style="font-weight: bold" value="Expiry Date(MM/YYYY):" />
+                        </p:column>
+                        <p:column>
+                            <p:inputText required="true" requiredMessage=" Please enter expiry Date" id="exp"  value="#{addressMB.exp}" />
+                            
+                        </p:column>               
+                    </p:row>
+                    
+                    
+                    
+                </p:panelGrid>
+
+
+            </p:panel>
+        </h:form>
+        
+         <div >
+		
+	<!-- <form action="https://www.paypal.com/cgi-bin/webscr" method="post"> -->
+	<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+		<input type="hidden" name="business" value="yanruoxi1991-facilitator@gmail.com" />
+
+
+		<input type="hidden" name="cmd" value="_xclick" />
+		<input type="hidden" name="charset" value="utf-8" />
+		<input type="hidden" name="return" value="http://localhost/realtywall/public/index.php/properties" />
+	
+		<input type="hidden" name="currency_code" value="SGD" />
+		<input type="hidden" name="disp_tot" value="Y" />
+		
+		<input type="hidden" name="notify_url" value="http://localhost/realtywall/public/index.php/paypals/ipn" />
+		<!-- <input type="hidden" name="notify_url" value="http://localhost/realtywall/public/paypal"> -->
+
+                                    
+		<input type="hidden" name="amount" value="20.00" />
+		<input type="hidden" name="item_name" value="Premium Listing" />
+		
+		<input type="image" name="submit" border="0"
+		src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif"
+		alt="PayPal - The safer, easier way to pay online" />
+	</form>
+                </div>
+    </h:body>
+</html>

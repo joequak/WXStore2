@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is Metro/2.3 (tags/2.3-7528; 2013-04-29T19:34:10+0000) JAXWS-RI/2.2.8 JAXWS/2.2 svn-revision#unknown. --><xs:schema xmlns:tns="http://WS/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://WS/">
+
+<xs:element name="fetchAddress" type="tns:fetchAddress"/>
+
+<xs:element name="fetchAddressResponse" type="tns:fetchAddressResponse"/>
+
+<xs:element name="fetchCredit" type="tns:fetchCredit"/>
+
+<xs:element name="fetchCreditResponse" type="tns:fetchCreditResponse"/>
+
+<xs:element name="updateAddress" type="tns:updateAddress"/>
+
+<xs:element name="updateCredit" type="tns:updateCredit"/>
+
+<xs:complexType name="fetchAddress">
+<xs:sequence>
+<xs:element name="email" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="fetchAddressResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:shipToAddress" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="shipToAddress">
+<xs:sequence>
+<xs:element name="address1" type="xs:string" minOccurs="0"/>
+<xs:element name="address2" type="xs:string" minOccurs="0"/>
+<xs:element name="city" type="xs:string" minOccurs="0"/>
+<xs:element name="contactNumber" type="xs:string" minOccurs="0"/>
+<xs:element name="country" type="xs:string" minOccurs="0"/>
+<xs:element name="id" type="xs:long" minOccurs="0"/>
+<xs:element name="postalcode" type="xs:string" minOccurs="0"/>
+<xs:element name="shipState" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="fetchCredit">
+<xs:sequence>
+<xs:element name="email" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="fetchCreditResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:creditCard" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="creditCard">
+<xs:sequence>
+<xs:element name="cardHolder" type="xs:string" minOccurs="0"/>
+<xs:element name="cardNumber" type="xs:string" minOccurs="0"/>
+<xs:element name="expDate" type="xs:string" minOccurs="0"/>
+<xs:element name="id" type="xs:long" minOccurs="0"/>
+<xs:element name="type" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="updateCredit">
+<xs:sequence>
+<xs:element name="email" type="xs:string" minOccurs="0"/>
+<xs:element name="newCredit" type="tns:creditCard" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="updateAddress">
+<xs:sequence>
+<xs:element name="email" type="xs:string" minOccurs="0"/>
+<xs:element name="newAddress" type="tns:shipToAddress" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
