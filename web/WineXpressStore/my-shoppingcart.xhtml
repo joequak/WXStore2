@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:head>
+        <title>My ShoppingCart</title>        
+
+
+    </h:head>
+    <h:body>
+
+        <ui:composition template="./../templates/mainTemplate.xhtml">
+            <ui:param name="pageName" value="About Us" />
+            <ui:define name="content">
+
+                <h:form id="form1">
+                    <p:growl id="msgs" showDetail="true"/>
+                    <p:ajaxStatus  style="width:16px;height:16px"/>
+                    <p:messages/>
+
+
+
+
+
+                    <p:dataTable id="orderItemList" var="orderItem" value="#{viewProductManagementBean.myshoppingcartList}" selection="#{viewProductManagementBean.selectItems}" rowKey="#{orderItem.id}"  style="margin-bottom:20px" emptyMessage="No results" >
+
+                        <f:facet name="header">
+                            Dear "#{viewProductManagementBean.onCus.fistName}" 's Shoppingcart
+                        </f:facet>
+
+                        <p:column headerText="Image">
+                            <h:graphicImage value="img/#{orderItem.product.picture}" style="width:600px;height:300px"/> 
+
+
+                        </p:column>
+
+
+                        <p:column headerText="Product Name">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{orderItem.product.name}" />
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{orderItem.product.name}" />
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+                        <p:column headerText="Price">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="$ #{orderItem.product.price}" />
+                                </f:facet>  
+                                <f:facet name="input">
+                                    <p:inputText  value="#{orderItem.product.price}" />
+                                </f:facet> 
+                            </p:cellEditor>
+                        </p:column>
+                        <p:column headerText="Discount">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{orderItem.product.discount} %" />
+                                </f:facet>  
+                                <f:facet name="input">
+                                    <p:inputText  value="#{orderItem.product.discount}" />
+                                </f:facet> 
+                            </p:cellEditor>
+                        </p:column>
+                        <p:column headerText="Quantity">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{orderItem.quantity}" />
+                                </f:facet>  
+                                <f:facet name="input">
+                                    <p:inputText  value="#{orderItem.quantity}" />
+                                </f:facet> 
+                            </p:cellEditor>
+                        </p:column>
+                        <p:column selectionMode="multiple" style="width:30px;text-align:center"/>
+                        <f:facet name="footer">
+                            <p:commandButton process="orderItemList" update=":form1:checkout" icon="ui-icon-search" value="View Cost" oncomplete="PF('multiCarDialog').show()"  actionListener="#{viewProductManagementBean.totalCost}"/>
+                            
+                            <p:commandButton id="orderItemListDelete" value="Delete" update=":form1:orderItemList" actionListener="#{viewProductManagementBean.deleteSelectOrderList}" ajax="true" >
+                                <p:confirm header="Confirmation" message="Are you sure you want to delete selected Items?" icon="ui-icon-alert" />
+                            </p:commandButton>
+                            <p:confirmDialog global="true" >
+                                <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                            </p:confirmDialog>
+
+                        </f:facet>
+
+                    </p:dataTable>
+
+
+                    <p:outputPanel id="checkout" style="text-align:center;">
+                        <ui:repeat value="#{viewProductManagementBean.selectItems}" var="item">
+
+                            <h:outputText value=" #{item.product.name}: Discount price: #{ item.product.price *(1- item.product.discount*0.01)} " style="display:block"/>
+                        </ui:repeat>
+                        <h:outputText value="Totoal Cost $: #{viewProductManagementBean.finalCost}" style="display:block"/>
+
+                        <p:commandButton value="Checkout/Pay" actionListener="#{viewProductManagementBean.generateOrderDetail}"  action="#{viewProductManagementBean.orderDetail}" ajax="false" />
+
+
+                    </p:outputPanel>
+
+
+
+                </h:form>
+
+            </ui:define>
+        </ui:composition>
+    </h:body>   
+
+</html>
+

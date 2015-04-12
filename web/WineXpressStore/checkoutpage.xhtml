@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>CheckOut</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="./../templates/mainTemplate.xhtml">
+            <ui:param name="pageName" value="About Us" />
+            <ui:define name="content">
+                <h:form id="form1">
+                    <p:growl id="msgs" showDetail="true"/>
+                    <p:ajaxStatus  style="width:16px;height:16px"/>
+                    <p:messages/>
+                    
+                    <p:dataTable id="orderDetailList" var="orderDetail" value="#{viewProductManagementBean.orderDetails}"   style="margin-bottom:20px" emptyMessage="No results" >
+
+                        <f:facet name="header">
+                            Dear "#{viewProductManagementBean.onCus.fistName}" 's OrderDetail
+                        </f:facet>
+
+
+                        <p:column headerText="Order product Name">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{orderDetail.product.name}" />
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{orderDetail.product.name}" />
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+                        <p:column headerText="Price">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="$ #{orderDetail.product.price}" />
+                                </f:facet>  
+                                <f:facet name="input">
+                                    <p:inputText  value="#{orderDetail.product.price}" />
+                                </f:facet> 
+                            </p:cellEditor>
+                        </p:column>
+                        
+                        <p:column headerText="Quantity">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{orderDetail.quantity}" />
+                                </f:facet>  
+                                <f:facet name="input">
+                                    <p:inputText  value="#{orderDetail.quantity}" />
+                                </f:facet> 
+                            </p:cellEditor>
+                        </p:column>
+                        
+                       
+
+                    </p:dataTable>
+
+
+                  
+                        <p:commandButton value="Payment"  />
+                  
+
+
+
+                </h:form>
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

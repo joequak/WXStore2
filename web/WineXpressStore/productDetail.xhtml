@@ -4,7 +4,8 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
 
@@ -17,6 +18,26 @@
                         <h:panelGrid columns="2" cellpadding="5" style="text-align: left">
                             <img id="logo" src="#{viewProductManagementBean.selectedProduct.picture}"/>
                             <h:outputText  value="#{viewProductManagementBean.selectedProduct.description}"/>
+                            <c:if test="#{viewProductManagementBean.onCus!=null}">
+
+                                <p:commandButton value="AddToShoppingCart" type="button" onclick="PF('dlg1').show();"/>
+                                <p:dialog header="Add To Shopping Cart" widgetVar="dlg1" modal="true" height ="100">
+                                     <h:outputLabel for="quantity" value="Quantity : " />  
+                                     <p:inputText id="quantity" value="#{viewProductManagementBean.quantity}" required="true" label="Quantity:" />
+
+                                    <p:commandButton id="btn" style="width: 300px; height: 50px" value="Add quality"  actionListener="#{viewProductManagementBean.addToShoppingCart}" action="#{viewProductManagementBean.shoppingfirst}" ajax="true">
+                                    <f:attribute name="product" value="#{viewProductManagementBean.selectedProduct}"/>
+                                    <p:confirm header="Confirmation" message="Confirm To add to shopping cart?" icon="ui-icon-alert"  />
+
+                                </p:commandButton>
+
+                                <p:confirmDialog global="true" >
+                                    <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" onfocus="true" />
+                                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                                </p:confirmDialog>
+                                </p:dialog>
+                                
+                            </c:if>
                         </h:panelGrid>
                         <h4 id="category1"> Categories &nbsp; #{viewProductManagementBean.allSub}</h4>
                     </p:fieldset>
