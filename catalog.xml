@@ -7,9 +7,14 @@
     <system systemId="http://localhost:8080/WineXpressWebService-war/categoryWS?WSDL" uri="src/conf/xml-resources/web-service-references/categoryWS/wsdl/localhost_8080/WineXpressWebService-war/categoryWS.wsdl"/>
     <system systemId="http://localhost:8080/WineXpressWebService-war/categoryWS?xsd=1" uri="src/conf/xml-resources/web-service-references/categoryWS/wsdl/localhost_8080/WineXpressWebService-war/categoryWS.xsd_1.xsd"/>
     <system systemId="http://localhost:8080/WineXpressWebService-war/productWS?WSDL" uri="src/conf/xml-resources/web-service-references/productWS/wsdl/localhost_8080/WineXpressWebService-war/productWS.wsdl"/>
-    <system systemId="http://localhost:8080/WineXpressWebService-war/productWS?xsd=1" uri="src/conf/xml-resources/web-service-references/productWS/wsdl/localhost_8080/WineXpressWebService-war/productWS.xsd_1.xsd"/>
     <system systemId="http://localhost:8080/WineXpressWebService-war/CustAccMngmtWS?WSDL" uri="src/conf/xml-resources/web-service-references/CustAccMngmtWS/wsdl/localhost_8080/WineXpressWebService-war/CustAccMngmtWS.wsdl"/>
     <system systemId="http://localhost:8080/WineXpressWebService-war/CustAccMngmtWS?xsd=1" uri="src/conf/xml-resources/web-service-references/CustAccMngmtWS/wsdl/localhost_8080/WineXpressWebService-war/CustAccMngmtWS.xsd_1.xsd"/>
     <system systemId="http://localhost:8080/WineXpressWebService-war/AdminAccMngmtWS?WSDL" uri="src/conf/xml-resources/web-service-references/AdminAccMngmtWS/wsdl/localhost_8080/WineXpressWebService-war/AdminAccMngmtWS.wsdl"/>
     <system systemId="http://localhost:8080/WineXpressWebService-war/AdminAccMngmtWS?xsd=1" uri="src/conf/xml-resources/web-service-references/AdminAccMngmtWS/wsdl/localhost_8080/WineXpressWebService-war/AdminAccMngmtWS.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/WineXpressWebService-war/productWS?wsdl" uri="src/conf/xml-resources/web-service-references/productWS/wsdl/localhost_8080/WineXpressWebService-war/productWS.wsdl"/>
+    <system systemId="http://localhost:8080/WineXpressWebService-war/productWS?xsd=1" uri="src/conf/xml-resources/web-service-references/productWS/wsdl/localhost_8080/WineXpressWebService-war/productWS.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/WineXpressWebService-war/PaymentWS?wsdl" uri="src/conf/xml-resources/web-service-references/PaymentWS/wsdl/localhost_8080/WineXpressWebService-war/PaymentWS.wsdl"/>
+    <system systemId="http://localhost:8080/WineXpressWebService-war/PaymentWS?xsd=1" uri="src/conf/xml-resources/web-service-references/PaymentWS/wsdl/localhost_8080/WineXpressWebService-war/PaymentWS.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/WineXpressWebService-war/ReportWS?WSDL" uri="src/conf/xml-resources/web-service-references/ReportWS/wsdl/localhost_8080/WineXpressWebService-war/ReportWS.wsdl"/>
+    <system systemId="http://localhost:8080/WineXpressWebService-war/ReportWS?xsd=1" uri="src/conf/xml-resources/web-service-references/ReportWS/wsdl/localhost_8080/WineXpressWebService-war/ReportWS.xsd_1.xsd"/>
 </catalog>

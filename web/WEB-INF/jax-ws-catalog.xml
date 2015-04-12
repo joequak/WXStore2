@@ -12,4 +12,9 @@
     <system systemId="http://localhost:8080/WineXpressWebService-war/categoryWS?xsd=1" uri="wsdl/localhost_8080/WineXpressWebService-war/categoryWS.xsd_1.xsd"/>
     <system systemId="http://localhost:8080/WineXpressWebService-war/productWS?WSDL" uri="wsdl/localhost_8080/WineXpressWebService-war/productWS.wsdl"/>
     <system systemId="http://localhost:8080/WineXpressWebService-war/productWS?xsd=1" uri="wsdl/localhost_8080/WineXpressWebService-war/productWS.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/WineXpressWebService-war/productWS?wsdl" uri="wsdl/localhost_8080/WineXpressWebService-war/productWS.wsdl"/>
+    <system systemId="http://localhost:8080/WineXpressWebService-war/PaymentWS?wsdl" uri="wsdl/localhost_8080/WineXpressWebService-war/PaymentWS.wsdl"/>
+    <system systemId="http://localhost:8080/WineXpressWebService-war/PaymentWS?xsd=1" uri="wsdl/localhost_8080/WineXpressWebService-war/PaymentWS.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/WineXpressWebService-war/ReportWS?WSDL" uri="wsdl/localhost_8080/WineXpressWebService-war/ReportWS.wsdl"/>
+    <system systemId="http://localhost:8080/WineXpressWebService-war/ReportWS?xsd=1" uri="wsdl/localhost_8080/WineXpressWebService-war/ReportWS.xsd_1.xsd"/>
 </catalog>

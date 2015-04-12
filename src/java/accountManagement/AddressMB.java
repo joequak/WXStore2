@@ -22,6 +22,7 @@ import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.PBEParameterSpec;
 import javax.faces.bean.ManagedProperty;
+import product.Product;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 import ws.CreditCard;
@@ -52,6 +53,12 @@ public class AddressMB implements Serializable {
     @ManagedProperty(value = "#{commonInfraMB.emailAdd}")
     private String email;
 
+    @ManagedProperty(value = "#{viewProductManagementBean.orderID}")
+    private long orderID;
+
+    @ManagedProperty(value = "#{viewProductManagementBean.finalCost}")
+    private double price;
+
     private ShipToAddress address;
 
     private String line1;
@@ -66,19 +73,16 @@ public class AddressMB implements Serializable {
     private String holderName;
     private String creditNum;
     private String exp;
-    
-    private Long orderID;
-    
+
     @PostConstruct
-    public void Init(){
-    
-    
+    public void Init() {
+
     }
 
     public void redirectAddress() {
-        
+
         address = this.fetchAddress(getEmail());
-        System.out.println("email is getting "+email  );
+        System.out.println("email is getting " + email);
         System.out.println("fetched address" + address.getShipState());
         if (address.getShipState().equals("0")) {
             try {
@@ -167,7 +171,11 @@ public class AddressMB implements Serializable {
         }
     }
 
-    public void payment() {
+    public void payment() throws IOException, GeneralSecurityException {
+
+        System.out.println("printing order ID "+ getOrderID()  +"  price is   "+ getPrice());
+        this.createPaymentRecord(orderID, price, "customer");
+   
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("PayPal.xhtml");
         } catch (IOException ex) {
@@ -407,5 +415,43 @@ public class AddressMB implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    /**
+     * @return the orderID
+     */
+    public long getOrderID() {
+        return orderID;
+    }
+
+    /**
+     * @param orderID the orderID to set
+     */
+    public void setOrderID(long orderID) {
+        this.orderID = orderID;
+    }
+
+    /**
+     * @return the price
+     */
+    public double getPrice() {
+        return price;
+    }
+
+    /**
+     * @param price the price to set
+     */
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    private void createPaymentRecord(long orderID, double price, java.lang.String name) {
+        // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
+        // If the calling of port operations may lead to race condition some synchronization is required.
+        ws.PaymentWS port = service.getPaymentWSPort();
+        port.createPaymentRecord(orderID, price, name);
+    }
+
+
+  
 
 }

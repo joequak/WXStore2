@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    
+    <ui:composition template="./../templates/AdminTemplate.xhtml">
+        <ui:param name="pageName" value="Admin Management" />
+
+        <ui:define name="more-imports">
+            <ui:insert>
+            </ui:insert>
+        </ui:define>
+
+        <ui:define name="left">
+            #{commonInfraMB.checkAdminLogin()}
+            <h:form>  
+                <p:growl id="messages"/>
+                 <p:menubar style="text-align: right">
+                    <p:menuitem value="Monthly Report" url="../AdminPortal/monthlyReport.xhtml" />
+                    <p:separator />
+                    <p:menuitem value="Historical Report" url="../AdminPortal/hitoricalReport.xhtml" />
+                </p:menubar>
+            </h:form>
+        </ui:define>
+
+        <ui:define name="right">
+            <h:form>
+                <p:fieldset legend="Please select period" style="margin-bottom:20px">
+                    <h:panelGrid columns="3" cellpadding="5">
+                        <p:outputLabel for="startDate" value="Starting Date" /><p:spacer width="20" height="20" />
+                        <p:calendar id="startDate" value="#{hitoricalReportMB.start}" />
+                        <p:outputLabel for="endDate" value="End Date" /><p:spacer width="20" height="20" />
+                        <p:calendar id="endDate" value="#{hitoricalReportMB.end}" />
+                        <br></br><p:spacer width="20" height="20" /><br></br>
+                        <p:commandButton value="Get report" action="#{hitoricalReportMB.historicalReport()}" ajax="true"></p:commandButton>
+                    </h:panelGrid>
+                </p:fieldset>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

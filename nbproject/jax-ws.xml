@@ -98,38 +98,6 @@
         </wsimport-option>
       </wsimport-options>
     </client>
-    <client name="productWS">
-      <wsdl-url>http://localhost:8080/WineXpressWebService-war/productWS?WSDL</wsdl-url>
-      <local-wsdl-file>localhost_8080/WineXpressWebService-war/productWS.wsdl</local-wsdl-file>
-      <package-name>product</package-name>
-      <catalog-file>catalog.xml</catalog-file>
-      <wsimport-options>
-        <wsimport-option>
-          <wsimport-option-name>extension</wsimport-option-name>
-          <wsimport-option-value>true</wsimport-option-value>
-        </wsimport-option>
-        <wsimport-option>
-          <wsimport-option-name>verbose</wsimport-option-name>
-          <wsimport-option-value>true</wsimport-option-value>
-        </wsimport-option>
-        <wsimport-option>
-          <wsimport-option-name>fork</wsimport-option-name>
-          <wsimport-option-value>false</wsimport-option-value>
-        </wsimport-option>
-        <wsimport-option>
-          <wsimport-option-name>wsdlLocation</wsimport-option-name>
-          <wsimport-option-value>http://localhost:8080/WineXpressWebService-war/productWS?WSDL</wsimport-option-value>
-        </wsimport-option>
-        <wsimport-option>
-          <wsimport-option-name>xnocompile</wsimport-option-name>
-          <wsimport-option-value>true</wsimport-option-value>
-        </wsimport-option>
-        <wsimport-option>
-          <wsimport-option-name>xendorsed</wsimport-option-name>
-          <wsimport-option-value>true</wsimport-option-value>
-        </wsimport-option>
-      </wsimport-options>
-    </client>
     <client name="CustAccMngmtWS">
       <wsdl-url>http://localhost:8080/WineXpressWebService-war/CustAccMngmtWS?WSDL</wsdl-url>
       <local-wsdl-file>localhost_8080/WineXpressWebService-war/CustAccMngmtWS.wsdl</local-wsdl-file>
@@ -199,6 +167,102 @@
         <wsimport-option>
           <wsimport-option-name>package</wsimport-option-name>
           <wsimport-option-value>wx.accMngmtWS</wsimport-option-value>
+        </wsimport-option>
+      </wsimport-options>
+    </client>
+    <client name="productWS">
+      <wsdl-url>http://localhost:8080/WineXpressWebService-war/productWS?wsdl</wsdl-url>
+      <local-wsdl-file>localhost_8080/WineXpressWebService-war/productWS.wsdl</local-wsdl-file>
+      <package-name>product</package-name>
+      <catalog-file>catalog.xml</catalog-file>
+      <wsimport-options>
+        <wsimport-option>
+          <wsimport-option-name>extension</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>verbose</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>fork</wsimport-option-name>
+          <wsimport-option-value>false</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>wsdlLocation</wsimport-option-name>
+          <wsimport-option-value>http://localhost:8080/WineXpressWebService-war/productWS?wsdl</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>xnocompile</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>xendorsed</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+      </wsimport-options>
+    </client>
+    <client name="PaymentWS">
+      <wsdl-url>http://localhost:8080/WineXpressWebService-war/PaymentWS?wsdl</wsdl-url>
+      <local-wsdl-file>localhost_8080/WineXpressWebService-war/PaymentWS.wsdl</local-wsdl-file>
+      <package-name>ws</package-name>
+      <catalog-file>catalog.xml</catalog-file>
+      <wsimport-options>
+        <wsimport-option>
+          <wsimport-option-name>extension</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>verbose</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>fork</wsimport-option-name>
+          <wsimport-option-value>false</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>wsdlLocation</wsimport-option-name>
+          <wsimport-option-value>http://localhost:8080/WineXpressWebService-war/PaymentWS?wsdl</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>xnocompile</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>xendorsed</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+      </wsimport-options>
+    </client>
+    <client name="ReportWS">
+      <wsdl-url>http://localhost:8080/WineXpressWebService-war/ReportWS?WSDL</wsdl-url>
+      <local-wsdl-file>localhost_8080/WineXpressWebService-war/ReportWS.wsdl</local-wsdl-file>
+      <package-name>ws</package-name>
+      <catalog-file>catalog.xml</catalog-file>
+      <wsimport-options>
+        <wsimport-option>
+          <wsimport-option-name>extension</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>verbose</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>fork</wsimport-option-name>
+          <wsimport-option-value>false</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>wsdlLocation</wsimport-option-name>
+          <wsimport-option-value>http://localhost:8080/WineXpressWebService-war/ReportWS?WSDL</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>xnocompile</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>xendorsed</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
         </wsimport-option>
       </wsimport-options>
     </client>

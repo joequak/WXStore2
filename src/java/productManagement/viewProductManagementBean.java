@@ -5,14 +5,16 @@
  */
 package productManagement;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.xml.ws.WebServiceRef;
@@ -25,14 +27,15 @@ import product.ProductWS_Service;
 import product.SubCategories;
 import product.SubCategoryWS_Service;
 import wx.custAccMngmtWS.CustAccMngmtWS_Service;
+import javax.faces.bean.SessionScoped;
 
 /**
  *
  * @author mac
  */
 @ManagedBean(name = "viewProductManagementBean")
-@ViewScoped
-public class viewProductManagementBean {
+@SessionScoped
+public class viewProductManagementBean implements Serializable {
 
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/WineXpressWebService-war/subCategoryWS.wsdl")
     private SubCategoryWS_Service service_2;
@@ -48,31 +51,31 @@ public class viewProductManagementBean {
     private Integer rating;
     private String myComment;
     private Customer onCus;
-    private String allSub="";
+    private String allSub = "";
     @ManagedProperty(value = "#{commonInfraMB.logInCust}")
     private long logInCust;
-    private int quantity=1 ;//temporary
+    private int quantity = 1;//temporary
     private Collection<OrderItem> myshoppingcartList = new ArrayList<OrderItem>();
     private List<OrderItem> selectItems;
     private OrderDetail orderDetail;
     private List<OrderItem> orderDetails;
-   
-    private Double finalCost;
-    
+    //Ruoxi for payment
+    private long orderID;
+
+    private double finalCost;
+
     public viewProductManagementBean() {
     }
 
     @PostConstruct
     public void init() {
         selectedProduct = (Product) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("iselectedProduct");
-        System.out.println("*******************selected Product"+selectedProduct.getName());
-         System.out.println("**************************************"+logInCust);
+        System.out.println("*******************selected Product" + selectedProduct.getName());
+        System.out.println("**************************************" + logInCust);
         if (this.getLogInCust() != -1) {
             onCus = this.findCustomerById(this.getLogInCust());
         }
     }
-    
-    
 
     // geter and setter
     public Product getSelectedProduct() {
@@ -125,9 +128,9 @@ public class viewProductManagementBean {
     }
 
     public void makeComment() {
-        System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%!!!!"+this.myComment);
+        System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%!!!!" + this.myComment);
         this.makeComment_1(this.getSelectedProduct(), this.getMyComment(), this.getOnCus());
-        myComment="";
+        myComment = "";
 
     }
 
@@ -155,13 +158,6 @@ public class viewProductManagementBean {
         this.selectItems = selectItems;
     }
 
-    public Double getFinalCost() {
-        return finalCost;
-    }
-
-    public void setFinalCost(Double finalCost) {
-        this.finalCost = finalCost;
-    }
 
     public OrderDetail getOrderDetail() {
         return orderDetail;
@@ -172,53 +168,46 @@ public class viewProductManagementBean {
     }
 
     public List<OrderItem> getOrderDetails() {
-        
+
         return getCustomerLatestOrderDetail(this.onCus);
-       
+
     }
 
     public void setOrderDetails(List<OrderItem> orderDetails) {
         this.orderDetails = orderDetails;
     }
 
-  
-   
-
-   
-   
-
-    
-    
     public void oncancel() {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Cannot Cancel your rate", "!");
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
 
-    
-      public void addToShoppingCart(javax.faces.event.ActionEvent event) {
-          System.out.println("onCus&&&&"+onCus);   
-           if ( onCus== null) {
+    public void addToShoppingCart(javax.faces.event.ActionEvent event) {
+        System.out.println("onCus&&&&" + onCus);
+        if (onCus == null) {
             FacesMessage msg;
             msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid", "Login first/Register first");
             FacesContext.getCurrentInstance().addMessage(null, msg);
         } else {
             Product product1 = (Product) event.getComponent().getAttributes().get("product");
-            System.out.println("Product&&&&&&&&&&:"+product1.getName());         
-            addOrderItemAndShoppingCart(onCus,product1,quantity);
-     }
+            System.out.println("Product&&&&&&&&&&:" + product1.getName());
+            addOrderItemAndShoppingCart(onCus, product1, quantity);
+        }
     }
-        public String shoppingfirst() {
-       // String userName1 = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("userName");
-        if (onCus== null) {
+
+    public String shoppingfirst() {
+        // String userName1 = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("userName");
+        if (onCus == null) {
             return "homePage";//register page
 
         } else {
             return "my-shoppingcart.xhtml?faces-redirect=true";
         }
     }
-         public String orderDetail() {
-       // String userName1 = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("userName");
-        if (onCus== null) {
+
+    public String orderDetail() {
+        // String userName1 = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("userName");
+        if (onCus == null) {
             return "homePage";//register page
 
         } else {
@@ -228,7 +217,7 @@ public class viewProductManagementBean {
 
     public Collection<OrderItem> getMyshoppingcartList() {
        //  String userName1 = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("userName");
-       // Customer customer = customerSB.getCustomer(userName1);
+        // Customer customer = customerSB.getCustomer(userName1);
         if (onCus == null) {
             FacesMessage msg;
             msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Dear", "Login first/Register first");
@@ -240,20 +229,18 @@ public class viewProductManagementBean {
             myshoppingcartList = getShoppingCartList(onCus);
             return myshoppingcartList;
         }
-        
+
     }
 
     public void setMyshoppingcartList(Collection<OrderItem> myshoppingcartList) {
         this.myshoppingcartList = myshoppingcartList;
     }
-    
-     public void onRowEditProduct(RowEditEvent event) {
+
+    public void onRowEditProduct(RowEditEvent event) {
 
         OrderItem c = (OrderItem) event.getObject();
-        System.out.println(">???????"+c.getQuantity());
-         updateOrderItemQuantity(c);
-
-       
+        System.out.println(">???????" + c.getQuantity());
+        updateOrderItemQuantity(c);
 
         FacesMessage msg = new FacesMessage("Edit successfully");
         FacesContext.getCurrentInstance().addMessage(null, msg);
@@ -262,34 +249,34 @@ public class viewProductManagementBean {
     }
 
     public void onRowCancelProduct(RowEditEvent event) {
-        FacesMessage msg = new FacesMessage("Edit Cancelled","" );
+        FacesMessage msg = new FacesMessage("Edit Cancelled", "");
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
-   
-    public void totalCost(ActionEvent event){
-      
-        finalCost = calculateFinalCost(this.getSelectItems());
-         ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-         Map<String, Object> sessionMap = externalContext.getSessionMap(); 
-         sessionMap.put("orderPrice", finalCost);
-    }
-    
-    public void generateOrderDetail(ActionEvent event){
 
-         System.out.println("test111111!!!!!!");
-        orderDetail = createOrderDetail(this.getSelectItems(), this.onCus);
-        ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-        Map<String, Object> sessionMap = externalContext.getSessionMap();
-        sessionMap.put("orderID", orderDetail.getId());
+    public void totalCost(ActionEvent event) {
+
+        setFinalCost((double) calculateFinalCost(this.getSelectItems()));
         
     }
-   
-    public void deleteSelectOrderList(ActionEvent event){
-        System.out.println("test222222!!!!");
-        deleteOrderList(this.getSelectItems(),this.onCus);
+
+    public void generateOrderDetail(ActionEvent event) {
+
+        System.out.println("test111111!!!!!!");
+        this.setOrderDetail(this.createOrderDetail(this.getSelectItems(), this.onCus));
+        System.out.println("test111111!!!!!! DONE!");
+       
+        System.out.println("order detail is" + this.getOrderDetail().getId());
+        this.setOrderID(this.getOrderDetail().getId());
+        
+       // sessionMap.put("orderID", orderDetail.getId());
+
     }
-    
-    
+
+    public void deleteSelectOrderList(ActionEvent event) {
+        System.out.println("test222222!!!!");
+        deleteOrderList(this.getSelectItems(), this.onCus);
+    }
+
     //call web service
     private void rateProduct(product.Customer cus, product.Product myProduct, int myRate) {
         // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
@@ -368,6 +355,35 @@ public class viewProductManagementBean {
         return port.getCustomerLatestOrderDetail(customer);
     }
 
+    /**
+     * @return the orderID
+     */
+    public long getOrderID() {
+        return orderID;
+    }
+
+    /**
+     * @param orderID the orderID to set
+     */
+    public void setOrderID(long orderID) {
+        this.orderID = orderID;
+    }
+
+    /**
+     * @return the finalCost
+     */
+    public double getFinalCost() {
+        return finalCost;
+    }
+
+    /**
+     * @param finalCost the finalCost to set
+     */
+    public void setFinalCost(double finalCost) {
+        this.finalCost = finalCost;
+    }
+
    
 
+   
 }
