@@ -271,8 +271,13 @@ public class viewProductManagementBean {
     }
     
     public void generateOrderDetail(ActionEvent event){
-        System.out.println("test111111!!!!!!");
+
+         System.out.println("test111111!!!!!!");
         orderDetail = createOrderDetail(this.getSelectItems(), this.onCus);
+        ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+        Map<String, Object> sessionMap = externalContext.getSessionMap();
+        sessionMap.put("orderID", orderDetail.getId());
+        
     }
    
     public void deleteSelectOrderList(ActionEvent event){
