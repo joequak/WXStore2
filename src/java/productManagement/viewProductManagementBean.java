@@ -267,7 +267,11 @@ public class viewProductManagementBean {
     }
    
     public void totalCost(ActionEvent event){
+      
         finalCost = calculateFinalCost(this.getSelectItems());
+         ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+         Map<String, Object> sessionMap = externalContext.getSessionMap(); 
+         sessionMap.put("orderPrice", finalCost);
     }
     
     public void generateOrderDetail(ActionEvent event){
